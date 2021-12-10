@@ -165,38 +165,53 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Mark, function (sprite, otherSpr
         if (otherSprite == A) {
             if (pins.P0.analogRead() >= 0 && pins.P0.analogRead() < 200) {
                 Meter1.setImage(assets.image`Mater1-1`)
+                RightA = 0
             } else if (pins.P0.analogRead() >= 200 && pins.P0.analogRead() < 400) {
                 Meter1.setImage(assets.image`Mater1-2`)
+                RightA = 0
             } else if (pins.P0.analogRead() >= 400 && pins.P0.analogRead() < 600) {
                 Meter1.setImage(assets.image`Mater1-3`)
+                RightA = 0
             } else if (pins.P0.analogRead() >= 600 && pins.P0.analogRead() < 800) {
                 Meter1.setImage(assets.image`Mater1-4`)
+                RightA = 1
             } else {
                 Meter1.setImage(assets.image`Mater1-5`)
+                RightA = 0
             }
         } else if (otherSprite == B) {
             if (pins.P0.analogRead() >= 0 && pins.P0.analogRead() < 200) {
                 Meter2.setImage(assets.image`Mater1-1`)
+                RightB = 0
             } else if (pins.P0.analogRead() >= 200 && pins.P0.analogRead() < 400) {
                 Meter2.setImage(assets.image`Mater1-2`)
+                RightB = 0
             } else if (pins.P0.analogRead() >= 400 && pins.P0.analogRead() < 600) {
                 Meter2.setImage(assets.image`Mater1-3`)
+                RightB = 0
             } else if (pins.P0.analogRead() >= 600 && pins.P0.analogRead() < 800) {
                 Meter2.setImage(assets.image`Mater1-4`)
+                RightB = 0
             } else {
                 Meter2.setImage(assets.image`Mater1-5`)
+                RightB = 1
             }
         } else if (otherSprite == C) {
             if (pins.P0.analogRead() >= 0 && pins.P0.analogRead() < 200) {
                 Meter3.setImage(assets.image`Mater1-1`)
+                RightC = 1
             } else if (pins.P0.analogRead() >= 200 && pins.P0.analogRead() < 400) {
                 Meter3.setImage(assets.image`Mater1-2`)
+                RightC = 0
             } else if (pins.P0.analogRead() >= 400 && pins.P0.analogRead() < 600) {
                 Meter3.setImage(assets.image`Mater1-3`)
+                RightC = 0
             } else if (pins.P0.analogRead() >= 600 && pins.P0.analogRead() < 800) {
                 Meter3.setImage(assets.image`Mater1-4`)
+                RightC = 0
             } else {
                 Meter3.setImage(assets.image`Mater1-5`)
+                RightC = 0
             }
         } else if (otherSprite == HintPoint) {
             mySprite.destroy()
@@ -291,7 +306,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Object, function (sprite, otherS
             if (pins.P1.analogRead() > 1000) {
                 ButtonA.setImage(assets.image`TrueOn`)
                 pause(1000)
-                if (Meter1.image == assets.image`Mater1-4` && (Meter2.image == assets.image`Mater1-5` && Meter3.image == assets.image`Mater1-1`)) {
+                if (RightA == 1 && (RightB == 1 && RightC == 1)) {
                     ButtonA.setImage(assets.image`Open`)
                     RockedDoor.destroy(effects.disintegrate, 500)
                     tiles.setWallAt(tiles.getTileLocation(2, 3), false)
@@ -833,8 +848,11 @@ let OpenC = 0
 let Exit: Sprite = null
 let OpenA = 0
 let CardIconA: Sprite = null
+let RightC = 0
 let Meter3: Sprite = null
+let RightB = 0
 let Meter2: Sprite = null
+let RightA = 0
 let Meter1: Sprite = null
 let HintPoint: Sprite = null
 let C: Sprite = null
