@@ -7,6 +7,16 @@ namespace SpriteKind {
     export const Mark = SpriteKind.create()
     export const Mark2 = SpriteKind.create()
 }
+function Delete3F () {
+    for (let 値 of sprites.allOfKind(SpriteKind.Info)) {
+        値.destroy()
+    }
+    for (let 値 of sprites.allOfKind(SpriteKind.Mark)) {
+        値.destroy()
+    }
+    Cannon.destroy()
+    ButtonA.destroy()
+}
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (sprite, location) {
     pause(500)
     if (_1F == 2) {
@@ -15,6 +25,9 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (spr
     } else if (_2F == 2) {
         _2F = 3
         _3F = 1
+    } else if (_3F == 2) {
+        _3F = 3
+        _4F = 1
     } else {
     	
     }
@@ -262,9 +275,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Object, function (sprite, otherS
                     . f 1 1 f f 1 1 1 1 1 1 1 1 f . 
                     . f 1 1 1 1 1 1 1 1 1 1 1 1 f . 
                     . f 1 1 1 1 1 1 1 1 1 1 1 1 f . 
-                    . f 1 f f f f 1 1 1 1 f f 1 f . 
-                    . f 1 1 1 1 1 1 f f 1 f f 1 f . 
-                    . f 1 f f f f 1 1 1 1 f f 1 f . 
+                    . f 1 f f f f f f f f f f 1 f . 
+                    . f 1 f f f f f f f f f f 1 f . 
+                    . f 1 1 1 1 1 1 1 1 1 1 1 1 f . 
                     . f 1 1 1 1 1 1 1 1 1 1 1 1 f . 
                     . f 3 3 3 3 3 3 3 3 3 3 3 3 f . 
                     . f f f f f f f f f f f f f f . 
@@ -273,6 +286,19 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Object, function (sprite, otherS
                     `)
                 CardC.setVelocity(200, 0)
                 OpenC = 1
+            }
+        } else if (otherSprite == ButtonA) {
+            if (pins.P1.analogRead() > 1000) {
+                ButtonA.setImage(assets.image`TrueOn`)
+                pause(1000)
+                if (Meter1.image == assets.image`Mater1-4` && (Meter2.image == assets.image`Mater1-5` && Meter3.image == assets.image`Mater1-1`)) {
+                    ButtonA.setImage(assets.image`Open`)
+                    RockedDoor.destroy(effects.disintegrate, 500)
+                    tiles.setWallAt(tiles.getTileLocation(2, 3), false)
+                } else {
+                    game.showLongText("何も起きない", DialogLayout.Bottom)
+                    ButtonA.setImage(assets.image`ButtonA`)
+                }
             }
         }
     }
@@ -449,8 +475,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
                 game.showLongText("サイショ　ガ", DialogLayout.Bottom)
                 game.showLongText("ジュウヨウ　ダ", DialogLayout.Bottom)
             }
-        } else {
-        	
         }
     }
     if (_3F == 2) {
@@ -776,12 +800,19 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             }
         }
     }
+    if (_4F == 2) {
+        if (mySprite.overlapsWith(Board)) {
+            game.showLongText("４Ｆ", DialogLayout.Bottom)
+            game.showLongText("指令", DialogLayout.Bottom)
+        } else {
+        	
+        }
+    }
 })
 let HintText2: Sprite = null
 let HintText1: Sprite = null
 let Fish: Sprite = null
 let Cat: Sprite = null
-let ButtonA: Sprite = null
 let LookC = 0
 let CardA: Sprite = null
 let LookA = 0
@@ -799,7 +830,6 @@ let ButtonTrue2: Sprite = null
 let ButtonTrue: Sprite = null
 let CardC: Sprite = null
 let OpenC = 0
-let Cannon: Sprite = null
 let Exit: Sprite = null
 let OpenA = 0
 let CardIconA: Sprite = null
@@ -816,9 +846,12 @@ let ButtonJudgeT = 0
 let HintOpen = false
 let ButtonJudgeF = 0
 let mySprite: Sprite = null
+let _4F = 0
 let _3F = 0
 let _2F = 0
 let _1F = 0
+let ButtonA: Sprite = null
+let Cannon: Sprite = null
 let Title = 0
 Title = 0
 scene.setBackgroundImage(img`
@@ -989,7 +1022,7 @@ forever(function () {
         tiles.placeOnTile(Meter1, tiles.getTileLocation(6, 3))
         Meter2 = sprites.create(assets.image`Mater2-1`, SpriteKind.Info)
         tiles.placeOnTile(Meter2, tiles.getTileLocation(10, 3))
-        Meter3 = sprites.create(assets.image`Mater3-1`, SpriteKind.Player)
+        Meter3 = sprites.create(assets.image`Mater3-1`, SpriteKind.Info)
         tiles.placeOnTile(Meter3, tiles.getTileLocation(14, 3))
         CalendarIcon = sprites.create(img`
             f f f f f f f f f f f f f f f f 
@@ -1069,6 +1102,27 @@ forever(function () {
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.Info)
         tiles.placeOnTile(CardC, tiles.getTileLocation(2, 8))
+        RockedDoor = sprites.create(img`
+            c b b b b b b b b b b b b b b c 
+            c b b b b b b b b b b b b b b c 
+            c d d d d d d d d d d d d d d c 
+            c d d d d d d d d d d d d d d c 
+            c c c c c c c c c c c c c c c c 
+            c b b c b b b b b b b b c b b c 
+            c d d c b b b b b b b b c d d c 
+            c d d c 4 b b 5 5 b b 4 c d d c 
+            c d d c b e 5 b b 5 e b c d d c 
+            c d d c b e 4 5 5 4 e b c d d c 
+            c b b c 4 b 5 4 f 5 b 4 c b b c 
+            c d d c b b 4 4 e 4 b b c d d c 
+            c d d c b b e 4 4 e b b c d d c 
+            c d d c b b b e e b b b c d d c 
+            c d d c b b b b b b b b c d d c 
+            a c c c c c c c c c c c c c c a 
+            `, SpriteKind.Info)
+        tiles.placeOnTile(RockedDoor, tiles.getTileLocation(2, 3))
+        ButtonA = sprites.create(assets.image`ButtonA`, SpriteKind.Object)
+        tiles.placeOnTile(ButtonA, tiles.getTileLocation(4, 4))
         MakePlayer(13, 13)
         _3F = 2
     }
@@ -1300,6 +1354,16 @@ forever(function () {
         tiles.placeOnTile(Exit, tiles.getTileLocation(2, 14))
         MakePlayer(1, 13)
         _2F = 2
+    }
+})
+forever(function () {
+    if (_4F == 1) {
+        tiles.setTilemap(tilemap`レベル3`)
+        Delete3F()
+        Board.setPosition(24, 210)
+        tiles.placeOnTile(Exit, tiles.getTileLocation(3, 14))
+        MakePlayer(8, 13)
+        _4F = 2
     }
 })
 forever(function () {
