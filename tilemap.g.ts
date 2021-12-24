@@ -95,24 +95,24 @@ namespace myTiles {
 2 2 2 2 2 2 2 2 2 2 2 2 . . 2 2 
 `, [myTiles.transparency16,myTiles.tile9,sprites.dungeon.floorDarkDiamond,sprites.dungeon.floorDark5,sprites.dungeon.floorDark2,myTiles.tile10,myTiles.tile13,myTiles.tile14,sprites.dungeon.stairNorth], TileScale.Sixteen);
             case "レベル3":
-            case "レベル3":return tiles.createTilemap(hex`1000100002020202020203030202020202030303020404040404040404040404040404030204040404040404040404040404040202040404040404040404040404040402020404040404040404040404040404020304040404040404040404040404040203040404040404040404040404040402030404040404040404040404040404030204040404040404040404040404040202040404040404040404040404040402020404040404040404040404040404020204040404040404040404040404040302030404040404040404040404040402020404040404040404040404040404020204040404040404040404040404040202020101020302020202030302020202`, img`
+            case "レベル3":return tiles.createTilemap(hex`1000100002020202020203050202020202030303020404040402040404030404040404030204040404030404040304040404040202040404040202030202040404040402020404040404040304040404040404020304040404040402040404040404040203040404040404020404040404040402030404040404040304040404040404030204040404040402040404040404040202040404040404020404040404040402020404040404040c0404040404040402020404040404040c0404040404040403020304040404040c0404040606060d02020404040404040c04040406080b0702020404040404040c04040406090b0a0202020101020302020202030302020203`, img`
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-2 . . . . . . . . . . . . . . 2 
-2 . . . . . . . . . . . . . . 2 
-2 . . . . . . . . . . . . . . 2 
-2 . . . . . . . . . . . . . . 2 
-2 . . . . . . . . . . . . . . 2 
-2 . . . . . . . . . . . . . . 2 
-2 . . . . . . . . . . . . . . 2 
-2 . . . . . . . . . . . . . . 2 
-2 . . . . . . . . . . . . . . 2 
-2 . . . . . . . . . . . . . . 2 
-2 . . . . . . . . . . . . . . 2 
-2 2 . . . . . . . . . . . . . 2 
-2 . . . . . . . . . . . . . . 2 
-2 . . . . . . . . . . . . . . 2 
+2 . . . . 2 . . . 2 . . . . . 2 
+2 . . . . 2 . . . 2 . . . . . 2 
+2 . . . . 2 2 2 2 2 . . . . . 2 
+2 . . . . . . 2 . . . . . . . 2 
+2 . . . . . . 2 . . . . . . . 2 
+2 . . . . . . 2 . . . . . . . 2 
+2 . . . . . . 2 . . . . . . . 2 
+2 . . . . . . 2 . . . . . . . 2 
+2 . . . . . . 2 . . . . . . . 2 
+2 . . . . . . 2 . . . . . . . 2 
+2 . . . . . . 2 . . . . . . . 2 
+2 2 . . . . . 2 . . . 2 2 2 . 2 
+2 . . . . . . 2 . . . 2 . . . 2 
+2 . . . . . . . . . . 2 . . . 2 
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-`, [myTiles.transparency16,myTiles.tile9,sprites.dungeon.floorDark2,sprites.dungeon.floorDark5,myTiles.tile10], TileScale.Sixteen);
+`, [myTiles.transparency16,myTiles.tile9,sprites.dungeon.floorDark2,sprites.dungeon.floorDark5,myTiles.tile10,sprites.dungeon.stairNorth,sprites.dungeon.floorLight0,sprites.dungeon.darkGroundSouthWest1,sprites.dungeon.darkGroundSouthEast1,sprites.dungeon.darkGroundNorthEast1,sprites.dungeon.darkGroundNorthWest1,sprites.dungeon.darkGroundCenter,sprites.dungeon.floorDark1,sprites.dungeon.floorMixed], TileScale.Sixteen);
         }
         return null;
     })

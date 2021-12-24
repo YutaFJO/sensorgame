@@ -11,8 +11,8 @@ function Delete3F () {
     for (let 値 of sprites.allOfKind(SpriteKind.Info)) {
         値.destroy()
     }
-    for (let 値 of sprites.allOfKind(SpriteKind.Mark)) {
-        値.destroy()
+    for (let 値2 of sprites.allOfKind(SpriteKind.Mark)) {
+        値2.destroy()
     }
     Cannon.destroy()
     ButtonA.destroy()
@@ -58,11 +58,11 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Dummy, function (sprite, otherSp
             pause(1000)
         }
         if (ButtonJudgeF >= 2 && ButtonJudgeF < 100) {
-            for (let 値 of sprites.allOfKind(SpriteKind.Dummy)) {
-                値.setImage(assets.image`ButtonA`)
+            for (let 値3 of sprites.allOfKind(SpriteKind.Dummy)) {
+                値3.setImage(assets.image`ButtonA`)
             }
-            for (let 値 of sprites.allOfKind(SpriteKind.TrueButton)) {
-                値.setImage(assets.image`ButtonA`)
+            for (let 値4 of sprites.allOfKind(SpriteKind.TrueButton)) {
+                値4.setImage(assets.image`ButtonA`)
             }
             if (HintOpen == false) {
                 HintOpen = true
@@ -72,14 +72,14 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Dummy, function (sprite, otherSp
             ButtonJudgeT2 = 0
         }
         if ((ButtonJudgeT == 1 || ButtonJudgeT2 == 1) && (ButtonJudgeF >= 1 && ButtonJudgeF < 100)) {
-            for (let 値 of sprites.allOfKind(SpriteKind.Dummy)) {
-                値.setImage(assets.image`ButtonA`)
+            for (let 値5 of sprites.allOfKind(SpriteKind.Dummy)) {
+                値5.setImage(assets.image`ButtonA`)
             }
-            for (let 値 of sprites.allOfKind(SpriteKind.TrueButton)) {
-                値.setImage(assets.image`ButtonA`)
+            for (let 値6 of sprites.allOfKind(SpriteKind.TrueButton)) {
+                値6.setImage(assets.image`ButtonA`)
             }
-            for (let 値 of sprites.allOfKind(SpriteKind.TrueButton2)) {
-                値.setImage(assets.image`ButtonA`)
+            for (let 値7 of sprites.allOfKind(SpriteKind.TrueButton2)) {
+                値7.setImage(assets.image`ButtonA`)
             }
             if (HintOpen == false) {
                 HintOpen = true
@@ -101,22 +101,22 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.TrueButton2, function (sprite, o
         }
         if (ButtonJudgeT2 == 1) {
             if (ButtonJudgeT == 0 && ButtonJudgeF >= 1) {
-                for (let 値 of sprites.allOfKind(SpriteKind.Dummy)) {
-                    値.setImage(assets.image`ButtonA`)
+                for (let 値8 of sprites.allOfKind(SpriteKind.Dummy)) {
+                    値8.setImage(assets.image`ButtonA`)
                 }
-                for (let 値 of sprites.allOfKind(SpriteKind.TrueButton2)) {
-                    値.setImage(assets.image`ButtonA`)
+                for (let 値9 of sprites.allOfKind(SpriteKind.TrueButton2)) {
+                    値9.setImage(assets.image`ButtonA`)
                 }
                 ButtonJudgeF = 0
                 ButtonJudgeT = 0
                 ButtonJudgeT2 = 0
             }
             if (ButtonJudgeT2 == 1 && ButtonJudgeT == 1 && ButtonJudgeF == 0) {
-                for (let 値 of sprites.allOfKind(SpriteKind.TrueButton)) {
-                    値.setImage(assets.image`Open`)
+                for (let 値10 of sprites.allOfKind(SpriteKind.TrueButton)) {
+                    値10.setImage(assets.image`Open`)
                 }
-                for (let 値 of sprites.allOfKind(SpriteKind.TrueButton2)) {
-                    値.setImage(assets.image`Open`)
+                for (let 値11 of sprites.allOfKind(SpriteKind.TrueButton2)) {
+                    値11.setImage(assets.image`Open`)
                 }
                 RockedDoor.destroy()
                 tiles.setWallAt(tiles.getTileLocation(13, 2), false)
@@ -136,22 +136,22 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.TrueButton, function (sprite, ot
         }
         if (ButtonJudgeT == 1) {
             if (ButtonJudgeT2 == 0 && ButtonJudgeF >= 1) {
-                for (let 値 of sprites.allOfKind(SpriteKind.Dummy)) {
-                    値.setImage(assets.image`ButtonA`)
+                for (let 値12 of sprites.allOfKind(SpriteKind.Dummy)) {
+                    値12.setImage(assets.image`ButtonA`)
                 }
-                for (let 値 of sprites.allOfKind(SpriteKind.TrueButton)) {
-                    値.setImage(assets.image`ButtonA`)
+                for (let 値13 of sprites.allOfKind(SpriteKind.TrueButton)) {
+                    値13.setImage(assets.image`ButtonA`)
                 }
                 ButtonJudgeF = 0
                 ButtonJudgeT = 0
                 ButtonJudgeT2 = 0
             }
             if (ButtonJudgeT == 1 && ButtonJudgeT2 == 1 && ButtonJudgeF == 0) {
-                for (let 値 of sprites.allOfKind(SpriteKind.TrueButton)) {
-                    値.setImage(assets.image`Open`)
+                for (let 値14 of sprites.allOfKind(SpriteKind.TrueButton)) {
+                    値14.setImage(assets.image`Open`)
                 }
-                for (let 値 of sprites.allOfKind(SpriteKind.TrueButton2)) {
-                    値.setImage(assets.image`Open`)
+                for (let 値15 of sprites.allOfKind(SpriteKind.TrueButton2)) {
+                    値15.setImage(assets.image`Open`)
                 }
                 RockedDoor.destroy()
                 tiles.setWallAt(tiles.getTileLocation(13, 2), false)
@@ -281,6 +281,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Object, function (sprite, otherS
     if (_3F == 2) {
         if (otherSprite == Cannon) {
             if (OpenC == 0) {
+                pause(500)
                 CardC.setImage(img`
                     . . . . . . . . . . . . . . . . 
                     . . . . . . . . . . . . . . . . 
@@ -319,11 +320,11 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Object, function (sprite, otherS
     }
 })
 function Delete2F () {
-    for (let 値 of sprites.allOfKind(SpriteKind.Dummy)) {
-        値.destroy()
+    for (let 値16 of sprites.allOfKind(SpriteKind.Dummy)) {
+        値16.destroy()
     }
-    for (let 値 of sprites.allOfKind(SpriteKind.Info)) {
-        値.destroy()
+    for (let 値17 of sprites.allOfKind(SpriteKind.Info)) {
+        値17.destroy()
     }
     ButtonTrue.destroy()
     ButtonTrue2.destroy()
@@ -1149,13 +1150,13 @@ forever(function () {
     if (_2F == 1) {
         tiles.setTilemap(tilemap`レベル2`)
         HintOpen = false
-        for (let 値 of tiles.getTilesByType(assets.tile`ButtonPoint`)) {
+        for (let 値18 of tiles.getTilesByType(assets.tile`ButtonPoint`)) {
             ButtonA = sprites.create(assets.image`ButtonA`, SpriteKind.Dummy)
-            tiles.placeOnTile(ButtonA, 値)
+            tiles.placeOnTile(ButtonA, 値18)
         }
         // 正解
         // ↑4-→1
-        // ↓3-←2   　
+        // ↓3-←2
         ButtonTrue = sprites.create(assets.image`ButtonTrue`, SpriteKind.TrueButton)
         tiles.placeOnTile(ButtonTrue, tiles.getTileLocation(1, 3))
         ButtonTrue2 = sprites.create(assets.image`ButtonTrue2`, SpriteKind.TrueButton2)
@@ -1380,7 +1381,7 @@ forever(function () {
         Delete3F()
         Board.setPosition(24, 210)
         tiles.placeOnTile(Exit, tiles.getTileLocation(3, 14))
-        MakePlayer(8, 13)
+        MakePlayer(3, 13)
         _4F = 2
     }
 })
