@@ -101,7 +101,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Dummy, function (sprite, otherSp
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLadder, function (sprite, location) {
     pause(500)
-    tiles.placeOnTile(mySprite, tiles.getTileLocation(9, 7))
+    mySprite.setPosition(152, 125)
     if (HaveHose == 1) {
         HoseIcon.setPosition(mySprite.x, mySprite.y)
     }
@@ -135,6 +135,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.TrueButton2, function (sprite, o
                     値.setImage(assets.image`Open`)
                 }
                 RockedDoor.destroy(effects.disintegrate, 500)
+                music.bigCrash.play()
                 tiles.setWallAt(tiles.getTileLocation(13, 2), false)
                 ButtonJudgeF = 100
             }
@@ -150,8 +151,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Info, function (sprite, otherSpr
         Light3.setImage(assets.image`FloorLight`)
     } else if (otherSprite == Light4) {
         Light4.setImage(assets.image`FloorLight`)
-    } else if (otherSprite == Light5) {
-        Light5.setImage(assets.image`FloorLight`)
     }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.TrueButton, function (sprite, otherSprite) {
@@ -183,6 +182,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.TrueButton, function (sprite, ot
                     値.setImage(assets.image`Open`)
                 }
                 RockedDoor.destroy(effects.disintegrate, 500)
+                music.bigCrash.play()
                 tiles.setWallAt(tiles.getTileLocation(13, 2), false)
                 ButtonJudgeF = 100
             }
@@ -204,7 +204,7 @@ controller.A.onEvent(ControllerButtonEvent.Released, function () {
                 tiles.placeOnTile(PuttingHose, tiles.getTileLocation(14, 12))
                 PutHose = 1
             }
-        } else if (HaveHose == 1 && mySprite.overlapsWith(Locker)) {
+        } else if (Button2Move == 1 && (HaveHose == 1 && mySprite.overlapsWith(Locker))) {
             if (SetHose == 0) {
                 Locker.setImage(assets.image`SetHose`)
                 Button2Move = 2
@@ -340,6 +340,7 @@ controller.B.onEvent(ControllerButtonEvent.Released, function () {
             if (BreakCount == 5) {
                 Wall.destroy(effects.disintegrate, 500)
                 BreakPoint.destroy()
+                music.bigCrash.play()
                 tiles.setWallAt(tiles.getTileLocation(7, 10), false)
                 tiles.setWallAt(tiles.getTileLocation(7, 11), false)
                 tiles.setWallAt(tiles.getTileLocation(7, 12), false)
@@ -416,7 +417,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Object, function (sprite, otherS
                 if (RightA == 1 && (RightB == 1 && RightC == 1)) {
                     ButtonA.setImage(assets.image`Open`)
                     RockedDoor.destroy(effects.disintegrate, 500)
+                    music.bigCrash.play()
                     tiles.setWallAt(tiles.getTileLocation(2, 3), false)
+                    RightA = 2
                 } else {
                     game.showLongText("何も起きない", DialogLayout.Bottom)
                     ButtonA.setImage(assets.image`ButtonA`)
@@ -514,6 +517,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Object, function (sprite, otherS
                     scene.centerCameraAt(120, 40)
                     pause(1000)
                     scene.cameraShake(4, 2000)
+                    music.spooky.play()
                     pause(2000)
                     LastWall.destroy(effects.disintegrate, 500)
                     tiles.setWallAt(tiles.getTileLocation(6, 1), false)
@@ -522,6 +526,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Object, function (sprite, otherS
                     tiles.setWallAt(tiles.getTileLocation(8, 1), false)
                     tiles.setWallAt(tiles.getTileLocation(8, 2), false)
                     tiles.setWallAt(tiles.getTileLocation(8, 3), false)
+                    music.bigCrash.play()
                     pause(2000)
                     scene.cameraFollowSprite(mySprite)
                     controller.moveSprite(mySprite, 100, 100)
@@ -961,7 +966,8 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
                     LookA = 0
                 }
             }
-        } else if (OpenC == 1) {
+        }
+        if (OpenC == 1) {
             if (mySprite.overlapsWith(CardIconC)) {
                 if (LookC == 0) {
                     CardC = sprites.create(img`
@@ -1208,11 +1214,10 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
                 controller.moveSprite(mySprite, 100, 100)
                 LookParts = 0
             }
-        } else {
-        	
         }
     }
 })
+let Locater: Sprite = null
 let Goal: Sprite = null
 let Aisle: Sprite = null
 let Pool: Sprite = null
@@ -1279,15 +1284,14 @@ let HintPoint: Sprite = null
 let C: Sprite = null
 let B: Sprite = null
 let A: Sprite = null
-let Button2Move = 0
 let SetHose = 0
 let PuttingHose: Sprite = null
 let PutHose = 0
 let StockerPosition = 0
 let Locker: Sprite = null
+let Button2Move = 0
 let HosePoint: Sprite = null
 let FloorStocker: Sprite = null
-let Light5: Sprite = null
 let Light4: Sprite = null
 let Light3: Sprite = null
 let Light2: Sprite = null
@@ -1819,7 +1823,7 @@ forever(function () {
             `, SpriteKind.Info)
         tiles.placeOnTile(RockedDoor, tiles.getTileLocation(13, 2))
         Board.setPosition(56, 210)
-        tiles.placeOnTile(Exit, tiles.getTileLocation(2, 14))
+        tiles.placeOnTile(Exit, tiles.getTileLocation(3, 14))
         MakePlayer(1, 13)
         _2F = 2
     }
@@ -2075,15 +2079,13 @@ forever(function () {
         tiles.setTilemap(tilemap`レベル6`)
         Delete4F()
         Light1 = sprites.create(assets.image`LightPoint`, SpriteKind.Info)
-        tiles.placeOnTile(Light1, tiles.getTileLocation(8, 14))
+        tiles.placeOnTile(Light1, tiles.getTileLocation(8, 15))
         Light2 = sprites.create(assets.image`LightPoint`, SpriteKind.Info)
         tiles.placeOnTile(Light2, tiles.getTileLocation(8, 12))
         Light3 = sprites.create(assets.image`LightPoint`, SpriteKind.Info)
-        tiles.placeOnTile(Light3, tiles.getTileLocation(8, 10))
+        tiles.placeOnTile(Light3, tiles.getTileLocation(8, 9))
         Light4 = sprites.create(assets.image`LightPoint`, SpriteKind.Info)
-        tiles.placeOnTile(Light4, tiles.getTileLocation(8, 8))
-        Light5 = sprites.create(assets.image`LightPoint`, SpriteKind.Info)
-        tiles.placeOnTile(Light5, tiles.getTileLocation(8, 6))
+        tiles.placeOnTile(Light4, tiles.getTileLocation(8, 6))
         for (let 値 of tiles.getTilesByType(assets.tile`myTile17`)) {
             Aisle = sprites.create(img`
                 . . . . . . . . . . . . . . . . 
@@ -2241,10 +2243,14 @@ forever(function () {
             9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
             `)
         tiles.setTilemap(tilemap`レベル8`)
-        MakePlayer(4, 6)
-        mySprite.setPosition(80, 104)
+        Locater = sprites.create(assets.image`Locater`, SpriteKind.Info)
+        Locater.setPosition(80, 40)
+        Locater.setVelocity(0, 20)
+        MakePlayer(5, 9)
+        mySprite.setPosition(80, 152)
         controller.moveSprite(mySprite, 0, 0)
-        pause(1000)
+        scene.cameraFollowSprite(Locater)
+        pause(6000)
         RF = 2
     }
 })
